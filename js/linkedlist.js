@@ -1,0 +1,55 @@
+var linkedList = function(){
+	var list = {},
+		start = null;
+	
+	function makeNode(data){
+		return { data: data, count: 1 ,next: null};
+	};
+	
+	list.add = function(data){
+		if(start === null){
+			var node = makeNode(data);
+			start = node;
+		}
+		else{
+			var save = start, prev = null;
+			while(save != null && save.data < data){
+				prev = save;
+				save = save.next;
+			}
+			
+			if(save != null && save.data === data){
+				save.count++;
+				return;
+			}
+			else {
+				var node = makeNode(data);
+				node.next = save;
+				if(save === start){
+					start = node;
+				}
+				else{
+					prev.next = node;
+				}
+			}
+		}
+	};
+	
+	list.occurencesList = function(){
+		var save = start, results = [];
+		while( save!= null){
+			results.push({
+				data: save.data,
+				count: save.count
+			});
+			save = save.next;
+		};
+		
+		return results;
+	} 
+	
+	list.remove = function(){
+		
+	};
+	return list;
+}
