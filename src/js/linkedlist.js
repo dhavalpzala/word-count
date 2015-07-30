@@ -1,55 +1,53 @@
-var linkedList = function(){
-	var list = {},
-		start = null;
-	
-	function makeNode(data){
-		return { data: data, count: 1 ,next: null};
-	};
-	
-	list.add = function(data){
-		if(start === null){
-			var node = makeNode(data);
+function linkedList() {
+	var list = {}, start = null;
+
+	function makeNode(data) {
+		return {
+			data : data,
+			count : 1,
+			next : null
+		};
+	}
+
+	list.add = function(data) {
+		var node = makeNode(data);
+		if (start === null) {
 			start = node;
-		}
-		else{
+		} else {
 			var save = start, prev = null;
-			while(save != null && save.data < data){
+			while (save != null && save.data < data) {
 				prev = save;
 				save = save.next;
 			}
-			
-			if(save != null && save.data === data){
+
+			if (save != null && save.data === data) {
 				save.count++;
 				return;
-			}
-			else {
-				var node = makeNode(data);
+			} else {
 				node.next = save;
-				if(save === start){
+				if (save === start) {
 					start = node;
-				}
-				else{
+				} else {
 					prev.next = node;
 				}
 			}
 		}
 	};
-	
-	list.occurencesList = function(){
+
+	list.occurencesList = function() {
 		var save = start, results = [];
-		while( save!= null){
+		while (save != null) {
 			results.push({
-				data: save.data,
-				count: save.count
+				data : save.data,
+				count : save.count
 			});
 			save = save.next;
-		};
-		
+		}
 		return results;
-	} 
-	
-	list.remove = function(){
-		
+	};
+
+	list.remove = function() {
+
 	};
 	return list;
 }
