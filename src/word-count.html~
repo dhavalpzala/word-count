@@ -7,7 +7,9 @@
 <script src="js/word-count.js"></script>
 </head>
 <body ng-app="word-count" ng-controller="IndexController" >
+
 <textarea style="width: 500px; height: 200px;" ng-model="inputText" ng-change="find(this.inputText)" >  </textarea>
+
 <br/>
 <ul>
 	<li ng-repeat="item in list">
